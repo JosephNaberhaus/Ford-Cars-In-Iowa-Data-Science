@@ -215,20 +215,20 @@ def scrapeIds(path):
                         carIds.writerow([id, makeId, modelName, zip])
 
 def scrapeCarData(readPath, writePath):
-    with open(readPath) as readFile, open(writePath, 'w', newline='') as writeFile:
+    with open(readPath) as readFile, open(writePath, 'w', newline='', buffering=1) as writeFile:
         readCSV = csv.DictReader(readFile)
         writeCSV = csv.DictWriter(writeFile, carAttributeIds)
         writeCSV.writeheader()
         for car in readCSV:
             print(car)
             carData = scrapeCarDataFromId(car["id"])
-            carData["id"] = car["id"]
-            carData["modelName"] = car["modelName"]
-            if carData != None:
+            if carData != None:            
+                carData["id"] = car["id"]
+                carData["modelName"] = car["modelName"]
                 #carData['model'] = car["modelName"]
                 writeCSV.writerow(carData)
-        # Add reasonable delay between requests
-        time.sleep(randint(1,3))
+            # Add reasonable delay between requests
+            time.sleep(randint(1,3))
 
 '''
 Called when the Python file is executed and controls
