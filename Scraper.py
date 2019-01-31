@@ -233,7 +233,7 @@ def scrapeCarData(readPath, writePath):
 '''
 Called when the Python file is executed and controls
 what the app should do. This is not setup as a command
-line argument as it is unnecesary for the scop of the project
+line argument as it is unnecesary for the scope of the project
 '''
 def initiate():
     scrapeCarData("carIdsClean.csv", "carData.csv")
